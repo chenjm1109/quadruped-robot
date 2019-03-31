@@ -1,6 +1,6 @@
 # Gazebo ROS Demos
 
-* Author: Dave Coleman <davetcoleman@gmail.com>
+* Author: Dave Coleman <522706601@qq.com>
 * License: GNU General Public License, version 3 (GPL-3.0)
 
 Example robots and code for interfacing Gazebo with ROS
