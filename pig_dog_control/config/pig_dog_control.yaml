@@ -1,0 +1,51 @@
+pig_dog:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+  
+  # Position Controllers ---------------------------------------
+  joint1_position_controller:
+    type: position_controllers/JointPositionController
+    joint: body_lf_joint
+    #pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint2_position_controller:
+    type: position_controllers/JointPositionController
+    joint: body_rf_joint
+    #pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint3_position_controller:
+    type: position_controllers/JointPositionController
+    joint: body_lb_joint
+    #pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint4_position_controller:
+    type: position_controllers/JointPositionController
+    joint: body_rb_joint
+    #pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint5_position_controller:
+    type: position_controllers/JointPositionController
+    joint: lf_leg_foot_joint
+    #pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint6_position_controller:
+    type: position_controllers/JointPositionController
+    joint: rf_leg_foot_joint
+    #pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint7_position_controller:
+    type: position_controllers/JointPositionController
+    joint: lb_leg_foot_joint
+    #pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint8_position_controller:
+    type: position_controllers/JointPositionController
+    joint: rb_leg_foot_joint
+    #pid: {p: 100.0, i: 0.01, d: 10.0}
+
+
+gazebo_ros_control/pid_gains:
+  body_lf_joint: {p: 100.0, i: 0.0, d: 10.0}
+  body_rf_joint: {p: 100.0, i: 0.0, d: 10.0}
+  body_lb_joint: {p: 100.0, i: 0.0, d: 10.0}
+  body_rb_joint: {p: 100.0, i: 0.0, d: 10.0}
+  lf_leg_foot_joint: {p: 400.0, i: 0.0, d: 10.0}
+  rf_leg_foot_joint: {p: 400.0, i: 0.0, d: 10.0}
+  lb_leg_foot_joint: {p: 400.0, i: 0.0, d: 10.0}
+  rb_leg_foot_joint: {p: 400.0, i: 0.0, d: 10.0}
+

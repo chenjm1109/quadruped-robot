@@ -1,0 +1,17 @@
+<package>
+  <description brief="pig_dog_gazebo">
+
+     pig_dog_gazebo
+
+  </description>
+  <author>JIm</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/pig_dog_gazebo</url>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <depend package="std_msgs"/>
+
+</package>
+
+

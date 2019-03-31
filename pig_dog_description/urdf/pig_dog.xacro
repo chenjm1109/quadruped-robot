@@ -1,0 +1,448 @@
+<?xml version="1.0" ?>
+
+<robot name="pig_dog" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+  <xacro:include filename="$(find pig_dog_description)/urdf/pig_dog.gazebo" />
+
+  <joint name="body_lf_joint" type="continuous">
+    <parent link="body"/>
+    <child link="left_front_leg"/>
+    <origin rpy="0 0 0" xyz="-0.35 -0.3   0.65"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.7"/>
+  </joint>
+
+  <joint name="body_rf_joint" type="continuous">
+    <parent link="body"/>
+    <child link="right_front_leg"/>
+    <origin rpy="0 0 0" xyz="-0.35  0.3   0.65"/>
+    <axis xyz="0 -1  0"/>
+    <dynamics damping="0.7"/>
+  </joint>
+
+  <joint name="body_lb_joint" type="continuous">
+    <parent link="body"/>
+    <child link="left_back_leg"/>
+    <origin rpy="0 0 0" xyz="1.05 -0.3   0.65"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.7"/>
+  </joint>
+
+  <joint name="body_rb_joint" type="continuous">
+    <parent link="body"/>
+    <child link="right_back_leg"/>
+    <origin rpy="0 0 0" xyz="1.05 0.3  0.65"/>
+    <axis xyz="0 -1  0"/>
+    <dynamics damping="0.7"/>
+  </joint>
+
+  <joint name="lf_leg_foot_joint" type="prismatic">
+    <parent link="left_front_leg"/>
+    <child link="left_front_foot"/>
+    <origin rpy="0 0 0" xyz="0   0  -0.6"/>
+    <axis xyz="0  0 -1"/>
+    <limit effort="1e10" lower="0" upper="0.5" velocity="10"/>
+  </joint>
+
+  <joint name="rf_leg_foot_joint" type="prismatic">
+    <parent link="right_front_leg"/>
+    <child link="right_front_foot"/>
+    <origin rpy="0 0 0" xyz="0   0  -0.6"/>
+    <axis xyz="0  0 -1"/>
+    <limit effort="1e10" lower="0" upper="0.5" velocity="10"/>
+  </joint>
+
+  <joint name="lb_leg_foot_joint" type="prismatic">
+    <parent link="left_back_leg"/>
+    <child link="left_back_foot"/>
+    <origin rpy="0 0 0" xyz="0   0  -0.6"/>
+    <axis xyz="0  0 -1"/>
+    <limit effort="1e10" lower="0" upper="0.5" velocity="10"/>
+  </joint>
+
+  <joint name="rb_leg_foot_joint" type="prismatic">
+    <parent link="right_back_leg"/>
+    <child link="right_back_foot"/>
+    <origin rpy="0 0 0" xyz="0   0  -0.6"/>
+    <axis xyz="0  0 -1"/>
+    <limit effort="1e10" lower="0" upper="0.5" velocity="10"/>
+  </joint>
+
+  <joint name="lf_foot_shoe_joint" type="fixed">
+    <parent link="left_front_foot"/>
+    <child link="left_front_shoe"/>
+    <origin rpy="0 0 0" xyz="0   0  0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="rf_foot_shoe_joint" type="fixed">
+    <parent link="right_front_foot"/>
+    <child link="right_front_shoe"/>
+    <origin rpy="0 0 0" xyz="0   0  0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="lb_foot_shoe_joint" type="fixed">
+    <parent link="left_back_foot"/>
+    <child link="left_back_shoe"/>
+    <origin rpy="0 0 0" xyz="0  0  0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="rb_foot_shoe_joint" type="fixed">
+    <parent link="right_back_foot"/>
+    <child link="right_back_shoe"/>
+    <origin rpy="0 0 0" xyz="0   0  0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!--link name="world"/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="body"/>
+  </joint-->
+
+  <link name="body">
+    <inertial>
+      <mass value="5"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.166667" ixy="0" ixz="0" iyy="0.166667" iyz="0" izz="0.166667"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0.35 0   0.5"/>
+      <geometry>
+        <box size="1.5 0.5 0.3"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0.35 0   0.5"/>
+      <geometry>
+        <box size="1.5 0.5 0.3"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="left_front_leg">
+    <inertial>
+      <mass value="0.5"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.166667" ixy="0" ixz="0" iyy="0.166667" iyz="0" izz="0.166667"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0   0  -0.3"/>
+      <geometry>
+        <box size="0.1 0.1 0.6"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0   0  -0.3"/>
+      <geometry>
+        <box size="0.1 0.1 0.6"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_front_leg">
+    <inertial>
+      <mass value="0.5"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.166667" ixy="0" ixz="0" iyy="0.166667" iyz="0" izz="0.166667"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0   0  -0.3"/>
+      <geometry>
+        <box size="0.1 0.1 0.6"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0   0  -0.3"/>
+      <geometry>
+        <box size="0.1 0.1 0.6"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="left_back_leg">
+    <inertial>
+      <mass value="0.5"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.166667" ixy="0" ixz="0" iyy="0.166667" iyz="0" izz="0.166667"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0   0  -0.3"/>
+      <geometry>
+        <box size="0.1 0.1 0.6"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0   0  -0.3"/>
+      <geometry>
+        <box size="0.1 0.1 0.6"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_back_leg">
+    <inertial>
+      <mass value="0.5"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.166667" ixy="0" ixz="0" iyy="0.166667" iyz="0" izz="0.166667"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0   0  -0.3"/>
+      <geometry>
+        <box size="0.1 0.1 0.6"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0   0  -0.3"/>
+      <geometry>
+        <box size="0.1 0.1 0.6"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="left_front_foot">
+    <inertial>
+      <mass value="0.2"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.145833" ixy="0" ixz="0" iyy="0.145833" iyz="0" izz="0.125"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0   0   0.25"/>
+      <geometry>
+        <cylinder length="0.5" radius="0.025"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0   0   0.25"/>
+      <geometry>
+        <cylinder length="0.5" radius="0.025"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_front_foot">
+    <inertial>
+      <mass value="0.2"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.145833" ixy="0" ixz="0" iyy="0.145833" iyz="0" izz="0.125"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0   0   0.25"/>
+      <geometry>
+        <cylinder length="0.5" radius="0.025"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0   0   0.25"/>
+      <geometry>
+        <cylinder length="0.5" radius="0.025"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="left_back_foot">
+    <inertial>
+      <mass value="0.2"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.145833" ixy="0" ixz="0" iyy="0.145833" iyz="0" izz="0.125"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0   0   0.25"/>
+      <geometry>
+        <cylinder length="0.5" radius="0.025"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0   0   0.25"/>
+      <geometry>
+        <cylinder length="0.5" radius="0.025"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_back_foot">
+    <inertial>
+      <mass value="0.2"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.145833" ixy="0" ixz="0" iyy="0.145833" iyz="0" izz="0.125"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0   0   0.25"/>
+      <geometry>
+        <cylinder length="0.5" radius="0.025"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0   0   0.25"/>
+      <geometry>
+        <cylinder length="0.5" radius="0.025"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="left_front_shoe">
+    <inertial>
+      <mass value="0.1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0   0   0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0   0   0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="left_back_shoe">
+    <inertial>
+      <mass value="0.1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0   0   0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0   0   0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="right_front_shoe">
+    <inertial>
+      <mass value="0.1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0   0   0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0   0   0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="right_back_shoe">
+    <inertial>
+      <mass value="0.1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
+    </inertial>
+    <collision name="pig_dog__collision">
+      <origin rpy="0 0 0" xyz="0   0   0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </collision>
+    <visual name="pig_dog__visual">
+      <origin rpy="0 0 0" xyz="0   0   0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <transmission name="lf_rot_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="body_lf_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lf_rot_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="rf_rot_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="body_rf_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rf_rot_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="lb_rot_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="body_lb_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lb_rot_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="rb_rot_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="body_rb_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rb_rot_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="lf_linear_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lf_leg_foot_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lf_linear_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction> 1 </mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="rf_linear_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rf_leg_foot_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rf_linear_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction> 1 </mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="lb_linear_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lb_leg_foot_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lb_linear_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction> 1 </mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="rb_linear_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rb_leg_foot_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rb_linear_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction> 1 </mechanicalReduction>
+    </actuator>
+  </transmission>
+
+</robot>
