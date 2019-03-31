@@ -1,0 +1,7 @@
+
+>> git add ./
+
+>> git commit -m 'XXXXXX'
+
+>> git push origin master
+
