@@ -16,7 +16,7 @@ Gazebo:
 
 ROS Control:
 
-    roslaunch pig_dog_control teleop_control.launch
+    rosrun pig_dog_control teleop_control.py
 
 ## Note
 
